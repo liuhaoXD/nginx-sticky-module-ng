@@ -11,6 +11,12 @@
 #include <ngx_http.h>
 #include <ngx_string.h>
 
+/* - fix for 1.11.2 removes include <openssl/md5.h> and <openssl/sha.h> */
+#if defined(nginx_version) && nginx_version >= 1011002
+    #include "openssl/md5.h"
+    #include "openssl/sha.h"
+#endif
+
 typedef ngx_int_t (*ngx_http_sticky_misc_hash_pt)(ngx_pool_t *pool, void *in, size_t len, ngx_str_t *digest);
 typedef ngx_int_t (*ngx_http_sticky_misc_hmac_pt)(ngx_pool_t *pool, void *in, size_t len, ngx_str_t *key, ngx_str_t *digest);
 typedef ngx_int_t (*ngx_http_sticky_misc_text_pt)(ngx_pool_t *pool, struct sockaddr *in, ngx_str_t *digest);

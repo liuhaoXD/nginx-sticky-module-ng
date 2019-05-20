@@ -16,11 +16,6 @@
   #define ngx_str_set(str, text) (str)->len = sizeof(text) - 1; (str)->data = (u_char *) text
 #endif
 
-/* - fix for 1.11.2 removes include <openssl/md5.h> in ngx_md5.h */
-#define MD5_CBLOCK  64
-#define MD5_LBLOCK  (MD5_CBLOCK/4)
-#define MD5_DIGEST_LENGTH 16
-
 // /* - bugfix for compiling on sles11 - needs gcc4.6 or later*/
 // #pragma GCC diagnostic ignored "-Wuninitialized"
 
